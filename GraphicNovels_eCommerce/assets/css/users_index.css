@@ -1,40 +1,101 @@
+/*
+COLORS
+dark red: #A82208
+green: #B7F63D
+light red: #F44625
+blue: #003EC1
+cornflowerblue: #5570A8
+
+Light yellow: F6E559;
+pink: F49DC6;
+cyan: 0692A8;
+light blue: 69B5C1;
+fuschia: A8004F;
+*/
+
 .container {
 	width: 85%;
 	margin: 0 auto;
 }
 
-img {
-	width: 125px;
-	height: 125px;
-	background-color: pink;
+a {
+	color: white;
 }
+
+a:hover {
+	color:#F49DC6;
+}
+
+img {
+	width: 400px;
+	height: 400px;
+	padding: 25px;
+	background-color: #333;
+}
+
+h2 {
+	color: #white;
+	font-family: "quicksand";
+	
+}
+
+
 
 div.navigation {
 	padding: .8rem;
 	min-height: 1.6rem;
-	background-color: #444;
 	color: #fff;
 	margin-bottom: 1.6rem;
+	margin-top:.8rem;
+	background-color: #0692A8;
+	border-bottom: 10px solid #F6E559;
+	border-top: 10px solid #B7F63D;
 }
 
 .navigation a {
-	text-decoration: underline;
+	
 	text-align: right;
 }
 
 div.main {
-	border: solid 2px #000;
+	/* make this a subtle color */
+	
 }
 
 div.usertools {
 	padding: 1.6rem;
+	background-color: #0692A8;
+	border-left: 10px solid #F6E559;
+	border-right: 10px solid #B7F63D;
 }
 
+div.decoration_1 {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background-color: #F49DC6;
+}
+
+div.decoration_2 {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background-color: #F6E559;;
+}
+div.decoration_3 {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background-color: #B7F63D;
+}
 .usertools ul{
 	font-size: 1.6rem;
 	list-style-type: none;
 	padding-left: 1.6rem;
+
+
 }
+
 
 div.main-content {
 	padding-left: 1.6rem;
@@ -90,4 +151,8 @@ div.product{
 
 ul.footer{
 	margin-left: 25%;
+}
+
+#page_links {
+	width: 85%;
 }

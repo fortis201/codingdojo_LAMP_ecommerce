@@ -1,59 +1,8 @@
-<html>
-<head>
-	<title>Add/Edit Product by ID</title>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap-theme.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/bootstrap/fonts/glyphicons-halflings-regular.svg">
-	<script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<style type="text/css">
-		.container {
-			width: 380px;
-			margin-left: 0 auto;
-		}
-		.container * {
-			vertical-align: top;
-		}
-		.container #name {
-			margin-left: 130px;
-		}
-		.container textarea {
-			margin-left: 80px;
-			width: 165px;
-			height: 100px;
-		}
-		.container #new_category {
-			margin-left: 40px;
-		}
-		#upload {
-			width: 180px;
-		}
-		.dropdown {
-			margin: 7rem 1rem 2rem 22rem;
-		}
-		p {
-			height: 50px;
-		}
-		.glyphicon {
-			margin-left: 10px;
-		}
-		.caret {
-			vertical-align: middle;
-		}		
-		a {
-			color: black;
-		}
-	</style>
-	<script type="text/javascript">
-		$(document).ready(function() {
-
-		})
-	</script>
-</head>
-<body>
-	<h2>Add/Edit Product - ID 3</h2>
-	<div class="container">
-		<form action="#" method="post">
+<div id="addModal" class="modalDialog">
+	<div class="modwrapper">	
+		<a href="#close" title="Close" class="close">X</a>
+		<h3>Add New Product</h3>
+		<form id="modal_partial" action="#" method="post">
 			<p>
 				<label for="name">Name</label>
 				<input id="name" type="text" name="name" value="Shorts">
@@ -79,14 +28,67 @@
 				<input id="new_category" type="text" name="new_category" placeholder="Enter a new category">
 			</p>
 			<p>
-				<label for="images">Images:</label>
-				<input id="img-upload" type="file" name="images" multiple>
-				<div id="img-preview"></div>
+				<script>
+					$(document).ready(function()
+					{
+						$("#fileuploader_add").uploadFile({
+						url:"YOUR_FILE_UPLOAD_URL",
+						fileName:"myfile"
+						});
+					});
+				</script>
+				<div id="fileuploader_add">Upload</div>
 			</p>
 			<button class="btn btn-deault"><a href="#">Back</a></button>
 			<button class="btn btn-primary"><a href="#">Preview</a></button>
 			<input class="btn btn-success" type="submit" value="Update">
 		</form>
 	</div>
-</body>
-</html>
+</div>
+
+<div id="editModal" class="modalDialog">	
+	<div id="here"class="modwrapper">			
+	</div>
+</div>
+
+
+<table class="table table-bordered table-striped">
+	<tr>
+		<th>Picture</th>
+		<th>Product ID</th>
+		<th>Product Name</th>
+		<th>Inventory Count</th>
+		<th>Quantity Sold</th>
+		<th>Action</th>
+	</tr>
+
+<?php	
+	// if(!isset($modal)){
+	// 	$model = null;
+	// }
+	foreach ($data as $info) {
+	// var_dump($info);
+?>
+	<tr>
+		<td><img src="<?= $info['file_path'] ?>" alt="product thumb"></td>
+		<td><?= $info['product_id'] ?></td>
+		<td><?= $info['name'] ?></td>
+		<td><?= $info['inventory_count'] ?></td>
+		<td><?= $info['quantity_sold'] ?></td>
+		<td>
+			<form class="inline" action="/products/admin_show_in_modal" method="post">
+				<input type="hidden" name="product_id" value="<?= $info['product_id'] ?>">
+				<a href="#editModal" id="<?= $info['product_id'] ?>" class="update_product">Edit</a>
+			</form>
+			<form class="inline" action="/products/destroy" method="post">
+				<input type="hidden" name="product_id" value="<?= $info['product_id'] ?>">
+				<a href="#" class="destroy_product">Delete</a>
+			</form>
+		</td>
+	</tr>
+	<?php
+	}
+	?>			
+	</tr>	
+
+</table>
